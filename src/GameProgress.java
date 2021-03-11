@@ -67,9 +67,9 @@ public class GameProgress implements Serializable {
             System.out.println(e.getMessage());
         }
         if (fileSave.delete()) {
-            System.out.println("Файл " + fileSave.getName() + " удален");
+            System.out.println("Временный файл " + fileSave.getName() + " успешно удален");
         } else {
-            System.out.println("Файл " + fileSave.getName() + " не найден");
+            System.out.println("Временный файл " + fileSave.getName() + " не найден");
         }
     }
 }

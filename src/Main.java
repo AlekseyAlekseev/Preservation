@@ -19,10 +19,8 @@ public class Main {
         System.out.println("Идёт архивация сохраняемых файлов...");
         GameProgress.zipFiles("C://JAVA//Installation//Games//savegames//save1.zip",
                 "C://JAVA//Installation//Games//savegames//save1.dat");
-
         GameProgress.zipFiles("C://JAVA//Installation//Games//savegames//save2.zip",
                 "C://JAVA//Installation//Games//savegames//save2.dat");
-
         GameProgress.zipFiles("C://JAVA//Installation//Games//savegames//save3.zip",
                 "C://JAVA//Installation//Games//savegames//save3.dat");
 
