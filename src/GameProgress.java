@@ -1,7 +1,8 @@
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -41,9 +42,17 @@ public class GameProgress implements Serializable {
     }
 
     public static void zipFiles(String zipPath, String filePath) {
+        File fileSave = new File(filePath);
         try (ZipOutputStream zout = new ZipOutputStream(new
                 FileOutputStream(zipPath));
              FileInputStream fis = new FileInputStream(filePath)) {
+//            try (Stream<Path> paths = Files.walk(Paths.get(filePath))) {
+//                paths
+//                        .filter(Files::isRegularFile)
+//                        .forEach(System.out::println);
+//            } catch (IOException e) {
+//                System.out.println(e.getMessage());
+//            }
             ZipEntry entry = new ZipEntry("packed_save.dat");
             zout.putNextEntry(entry);
             // считываем содержимое файла в массив byte
@@ -53,11 +62,16 @@ public class GameProgress implements Serializable {
             zout.write(buffer);
             // закрываем текущую запись для новой записи
             zout.closeEntry();
-        } catch (Exception e) {
+        } catch (
+                Exception e) {
             System.out.println(e.getMessage());
         }
+        if (fileSave.delete()) {
+            System.out.println("Файл " + fileSave.getName() + " удален");
+        } else {
+            System.out.println("Файл " + fileSave.getName() + " не найден");
+        }
     }
-
 }
 
 
