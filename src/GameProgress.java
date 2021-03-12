@@ -1,8 +1,4 @@
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.stream.Stream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -46,13 +42,6 @@ public class GameProgress implements Serializable {
         try (ZipOutputStream zout = new ZipOutputStream(new
                 FileOutputStream(zipPath));
              FileInputStream fis = new FileInputStream(filePath)) {
-//            try (Stream<Path> paths = Files.walk(Paths.get(filePath))) {
-//                paths
-//                        .filter(Files::isRegularFile)
-//                        .forEach(System.out::println);
-//            } catch (IOException e) {
-//                System.out.println(e.getMessage());
-//            }
             ZipEntry entry = new ZipEntry("packed_save.dat");
             zout.putNextEntry(entry);
             // считываем содержимое файла в массив byte
